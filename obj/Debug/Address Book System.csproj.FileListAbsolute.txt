@@ -1,0 +1,7 @@
+C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\Address Book System\Address Book System\bin\Debug\Address Book System.exe.config
+C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\Address Book System\Address Book System\bin\Debug\Address Book System.exe
+C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\Address Book System\Address Book System\bin\Debug\Address Book System.pdb
+C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\Address Book System\Address Book System\obj\Debug\Address Book System.csproj.AssemblyReference.cache
+C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\Address Book System\Address Book System\obj\Debug\Address Book System.csproj.CoreCompileInputs.cache
+C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\Address Book System\Address Book System\obj\Debug\Address Book System.exe
+C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\Address Book System\Address Book System\obj\Debug\Address Book System.pdb

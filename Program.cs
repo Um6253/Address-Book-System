@@ -116,6 +116,7 @@ namespace AddressBookSystem
                     Console.WriteLine($"zip: {contact[i].zipcode}");
                     Console.WriteLine($"email: {contact[i].email}");
                     Console.WriteLine($"Phone number: {contact[i].ph_number}");
+                    Console.WriteLine();
                     
 
                 }
@@ -158,7 +159,7 @@ namespace AddressBookSystem
                             case "state":
                                 con.state = new_value;
                                 break;
-                            case "zip":
+                            case "zipcode":
                                 con.zipcode = new_value;
                                 break;
                             case "phone Number":
@@ -181,13 +182,13 @@ namespace AddressBookSystem
             public void delete(List<AddressBook> contact, string email)
             {
                 int flag = 0;
-                foreach (AddressBook b in contact)
+                foreach (AddressBook ob in contact)
                 {
-                    if (b.email == email)
+                    if (ob.email == email)
                     {
                         flag = 1;
-                        contact.Remove(b);
-                        Console.WriteLine("The Contact is removed");
+                        contact.Remove(ob);
+                        Console.WriteLine("The Contact is Removed");
                         break;
                     }
 

@@ -27,7 +27,7 @@ namespace Address_Book_System
             Console.Write("Enter Your zipCode");
             int zipCode =Convert.ToInt32(Console.ReadLine());
             Console.Write("Enter Your PhoneNumber ");
-            int ph_Number = Convert.ToInt32(Console.ReadLine());
+            long ph_Number = Convert.ToInt64(Console.ReadLine());
             Console.Write("Enter Your Email ID: ");
             String email=Console.ReadLine();
             Console.ReadLine();
@@ -40,7 +40,7 @@ namespace Address_Book_System
             public string City;
             public string State;
             public int ZipCode ;
-            public int Ph_Number;
+            public long Ph_Number;
             public string Email;
 
             public void AddDetails(string first_Name, string last_Name, string address, string city, string state, int zipCode, int ph_Number, string email)

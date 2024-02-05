@@ -7,7 +7,7 @@ using static Address_Book_System.Program;
 
 namespace Address_Book_System
 {
-     public class AddressBook
+     class AddressBook
     {
 
         List<Contact> contacts = new List<Contact>();
@@ -135,6 +135,19 @@ namespace Address_Book_System
                 Console.WriteLine("Contact not found in the addressBook");
             }
 
+        }
+        public List<Contact> SearchByCity(string city)
+        {
+            return contacts.Where(contact => contact.City.Equals(city, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
+        public List<Contact> SearchByState(string state)
+        {
+            return contacts.Where(contact => contact.State.Equals(state, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+        public List<Contact> SearchByName(string name)
+        {
+            return contacts.Where(contact => contact.Fname.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
         }
     }
 

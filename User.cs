@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Address_Book_System
 {
-    public class User
+    class User
     {
         Dictionary<string, AddressBook> dict = new Dictionary<string, AddressBook>();
 
@@ -14,6 +14,8 @@ namespace Address_Book_System
         {
             dict = new Dictionary<string, AddressBook>();
         }
+        
+
         public AddressBook GetAddressBook(string name)
         {
             return dict[name];
@@ -52,6 +54,7 @@ namespace Address_Book_System
             }
 
         }
+
         public Dictionary<string, AddressBook> GetPersons()
         {
             return dict;
@@ -62,6 +65,34 @@ namespace Address_Book_System
             {
                 Console.WriteLine(book.Key);
             }
+        }
+        public List<Contact> SearchPersonsInCity(string city)
+        {
+            List<Contact> results = new List<Contact>();
+            foreach (var addressBook in dict.Values)
+            {
+                results.AddRange(addressBook.SearchByCity(city));
+            }
+            return results;
+        }
+
+        public List<Contact> SearchPersonsInState(string state)
+        {
+            List<Contact> results = new List<Contact>();
+            foreach (var addressBook in dict.Values)
+            {
+                results.AddRange(addressBook.SearchByState(state));
+            }
+            return results;
+        }
+        public List<Contact> SearchPersonsInName(string name)
+        {
+            List<Contact> results = new List<Contact>();
+            foreach (var addressBook in dict.Values)
+            {
+                results.AddRange(addressBook.SearchByName(name));
+            }
+            return results;
         }
     }
 }

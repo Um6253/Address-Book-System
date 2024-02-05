@@ -27,7 +27,8 @@ namespace Address_Book_System
                 Console.WriteLine("1.To add new User ");
                 Console.WriteLine("2.To perform operation in the AddressBook");
                 Console.WriteLine("3.To display list of User's of AddressBook");
-                Console.WriteLine("4.To exit from the AddressBook ");
+                Console.WriteLine("4.Enter the of Person to view  person's city and state in AddressBook");
+                Console.WriteLine("5.To exit from the AddressBook ");
                 int option = Convert.ToInt16(Console.ReadLine());
 
                 switch (option)
@@ -36,8 +37,8 @@ namespace Address_Book_System
                         Console.Clear();
                         Console.WriteLine("Enter the username");
                         string name = Console.ReadLine();
-                        
-                        user.add_user(name); 
+
+                        user.add_user(name);
                         Thread.Sleep(2000);
                         Console.Clear();
                         break;
@@ -109,12 +110,38 @@ namespace Address_Book_System
                         Console.Clear();
                         break;
                     case 4:
+                        Console.Clear();
+                        Console.WriteLine("Enter the name to search");
+                        string searchname = Console.ReadLine();
+                        var nameResults = user.SearchPersonsInName(searchname);
+                        DisplayPersonCityAndState(nameResults);
+                        Thread.Sleep(2000);
+                        Console.Clear();
+                        break;
+                    case 5:
 
                         flag = false;
                         break;
                 }
             } while (flag);
         }
-        
+        static void DisplayPersonCityAndState(List<Contact> results)
+        {
+            if (results.Any())
+            {
+                Console.WriteLine("Search Results:");
+                foreach (var contact in results)
+                {
+                    Console.WriteLine($"City: {contact.City}");
+                    Console.WriteLine($"State: {contact.State}");
+                    Console.WriteLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("No matching contacts found.");
+            }
+        }
+
     }
 }

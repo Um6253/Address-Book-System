@@ -15,9 +15,6 @@ namespace Address_Book_System
         {
             User user = new User();
 
-
-            //AddressBook obj = new AddressBook();
-
             bool flag = true;
             do
             {
@@ -129,6 +126,8 @@ namespace Address_Book_System
                         Thread.Sleep(2000);
                         Console.Clear();
                         break;
+
+
                     case 6:
                         Console.Clear();
                         Console.WriteLine("Enter the state to search: ");

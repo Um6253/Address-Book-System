@@ -27,8 +27,10 @@ namespace Address_Book_System
                 Console.WriteLine("1.To add new User ");
                 Console.WriteLine("2.To perform operation in the AddressBook");
                 Console.WriteLine("3.To display list of User's of AddressBook");
-                Console.WriteLine("4.Enter the of Person to view  person's city and state in AddressBook");
-                Console.WriteLine("5.To exit from the AddressBook ");
+                Console.WriteLine("4.Enter the of Name to view  person's city and state in AddressBook");
+                Console.WriteLine("5.Enter the city of person to view person details in AddressBook");
+                Console.WriteLine("6.Enter the State of person  to view person detail in AddressBook");
+                Console.WriteLine("7.To exit from the AddressBook ");
                 int option = Convert.ToInt16(Console.ReadLine());
 
                 switch (option)
@@ -119,6 +121,25 @@ namespace Address_Book_System
                         Console.Clear();
                         break;
                     case 5:
+                        Console.Clear();
+                        Console.WriteLine("Enter the city to search: ");
+                        string searchCity = Console.ReadLine();
+                        var cityResults = user.SearchPersonsInCity(searchCity);
+                        DisplaySearchResults(cityResults);
+                        Thread.Sleep(2000);
+                        Console.Clear();
+                        break;
+                    case 6:
+                        Console.Clear();
+                        Console.WriteLine("Enter the state to search: ");
+                        string searchState = Console.ReadLine();
+                        var stateResults = user.SearchPersonsInState(searchState);
+                        DisplaySearchResults(stateResults);
+                        Thread.Sleep(2000);
+                        Console.Clear();
+                        break;
+
+                    case 7:
 
                         flag = false;
                         break;
@@ -134,6 +155,30 @@ namespace Address_Book_System
                 {
                     Console.WriteLine($"City: {contact.City}");
                     Console.WriteLine($"State: {contact.State}");
+                    Console.WriteLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("No matching contacts found.");
+            }
+
+        }
+        static void DisplaySearchResults(List<Contact> results)
+        {
+            if (results.Any())
+            {
+                Console.WriteLine("Search Results:");
+                foreach (var contact in results)
+                {
+                    Console.WriteLine($"First Name: {contact.Fname}");
+                    Console.WriteLine($"Last Name: {contact.lastname}");
+                    Console.WriteLine($"Address: {contact.Addres}");
+                    Console.WriteLine($"City: {contact.City}");
+                    Console.WriteLine($"State: {contact.State}");
+                    Console.WriteLine($"Phone: {contact.PhoneNumber}");
+                    Console.WriteLine($"Email: {contact.Email}");
+                    Console.WriteLine($"Zipcode: {contact.ZipCode}");
                     Console.WriteLine();
                 }
             }

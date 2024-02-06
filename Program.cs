@@ -20,23 +20,21 @@ namespace Address_Book_System
             {
                 Console.WriteLine("WELCOME TO THE ADDRESS BOOK SYSTEM");
                 Console.WriteLine();
-                Console.WriteLine("Choose the Operation to be performed by the user");
-                Console.WriteLine("1.To add new User ");
-                Console.WriteLine("2.To perform operation in the AddressBook");
-                Console.WriteLine("3.To display list of User's of AddressBook");
-                Console.WriteLine("4.Enter the of Name to view  person's city and state in AddressBook");
-                Console.WriteLine("5.Enter the city of person to view person details in AddressBook");
-                Console.WriteLine("6.Enter the State of person  to view person detail in AddressBook");
-                Console.WriteLine("7.To exit from the AddressBook ");
+                Console.WriteLine("Choose the Operation to be performed by the User");
+                Console.WriteLine("1.Add new User ");
+                Console.WriteLine("2.Perform Operation in the AddressBook");
+                Console.WriteLine("3.Display list of User's in AddressBook");
+                Console.WriteLine("4.Search Contact in AddressBook");
+                Console.WriteLine("5.To exit from the AddressBook ");
+                Console.WriteLine();
+                Console.Write("Enter Option:");
                 int option = Convert.ToInt16(Console.ReadLine());
-
                 switch (option)
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Enter the username");
+                        Console.Write("Enter the User Name: ");
                         string name = Console.ReadLine();
-
                         user.add_user(name);
                         Thread.Sleep(2000);
                         Console.Clear();
@@ -44,25 +42,28 @@ namespace Address_Book_System
                     case 2:
                         int op;
                         Console.Clear();
-                        Console.WriteLine("Enter the name of the User Name: ");
+                        Console.Write("Enter the User Name in Which the Operations must be performed : ");
                         string fname = Console.ReadLine();
                         do
                         {
                             if (user.GetPersons().ContainsKey(fname))
                             {
                                 AddressBook obj = user.GetPersons()[fname];
-                                Console.WriteLine("Enter the operation to be performed");
-                                Console.WriteLine("1.To Add new the contact in Address Book");
-                                Console.WriteLine("2.To Display the contact in Address Book");
-                                Console.WriteLine("3.TO Edit the contact in Address Book");
-                                Console.WriteLine("4.TO Delete the contact from Address Book");
-                                Console.WriteLine("5.TO Exit from the Address Book");
+                                Console.WriteLine("Enter the Operation to be performed");
+                                Console.WriteLine();
+                                Console.WriteLine("1.Add a new contact in Address Book");
+                                Console.WriteLine("2.Display the contacts in Address Book");
+                                Console.WriteLine("3.Edit the contact in Address Book");
+                                Console.WriteLine("4.Delete the contact from Address Book");
+                                Console.WriteLine("5.Exit from the Address Book");
+                                Console.WriteLine();
+                                Console.Write("Enter Option :");
                                 op = Convert.ToInt32(Console.ReadLine());
                                 switch (op)
                                 {
                                     case 1:
                                         Console.Clear();
-                                        Console.WriteLine("Enter the details to add in Address Book");
+                                        Console.WriteLine("Enter the Details to add in Address Book : ");
                                         obj.add_contact();
                                         Console.Clear();
                                         break;
@@ -84,61 +85,71 @@ namespace Address_Book_System
                                         Thread.Sleep(2000);
                                         Console.Clear();
                                         break;
-
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("User not found in AddressBook");
+                                Console.WriteLine("User Does not exits in AddressBook");
                                 op = 5;
                                 Thread.Sleep(4000);
                                 Console.Clear();
                                 break;
-
                             }
 
                         } while (op != 5);
-
                         Console.Clear();
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Display the User's name of AddressBook");
+                        Console.WriteLine("Display the User's of AddressBook");
                         user.Display();
                         Thread.Sleep(5000);
                         Console.Clear();
                         break;
                     case 4:
                         Console.Clear();
-                        Console.WriteLine("Enter the name to search");
-                        string searchname = Console.ReadLine();
-                        var nameResults = user.SearchPersonsInName(searchname);
-                        DisplayPersonCityAndState(nameResults);
-                        Thread.Sleep(2000);
-                        Console.Clear();
+                        Console.WriteLine("Choose the search Factor :");
+                        Console.WriteLine();
+                        Console.WriteLine("1.Get City and State by Name in AddressBook");
+                        Console.WriteLine("2.Get Contact details by City Name in AddressBook");
+                        Console.WriteLine("3.Get Contact details by State Name in AddressBook");
+                        Console.WriteLine();
+                        Console.Write("Enter Option :");
+                        op = Convert.ToInt32(Console.ReadLine());
+                        switch (op)
+                        {
+                            case 1:
+                                Console.Clear();
+                                Console.Write("Enter the Name : ");
+                                string searchname = Console.ReadLine();
+                                var nameResults = user.SearchPersonsInName(searchname);
+                                DisplayPersonCityAndState(nameResults);
+                                Thread.Sleep(2000);
+                                Console.Clear();
+                                break;
+                            case 2:
+                                Console.Clear();
+                                Console.Write("Enter the City : ");
+                                string searchCity = Console.ReadLine();
+                                var cityResults = user.SearchPersonsInCity(searchCity);
+                                DisplaySearchResults(cityResults);
+                                Console.WriteLine($"The Number of contacts in {searchCity}: {user.GetContactCountByState(searchCity)}");
+                                Thread.Sleep(2000);
+                                Console.Clear();
+                                break;
+                            case 3:
+                                Console.Clear();
+                                Console.Write("Enter the State : ");
+                                string searchState = Console.ReadLine();
+                                var stateResults = user.SearchPersonsInState(searchState);
+                                DisplaySearchResults(stateResults);
+                                Console.WriteLine($"The Number of contacts in {searchState}: {user.GetContactCountByState(searchState)}");
+                                Thread.Sleep(2000);
+                                Console.Clear();
+                                break;
+                        }
                         break;
                     case 5:
-                        Console.Clear();
-                        Console.WriteLine("Enter the city to search: ");
-                        string searchCity = Console.ReadLine();
-                        var cityResults = user.SearchPersonsInCity(searchCity);
-                        DisplaySearchResults(cityResults);
-                        Thread.Sleep(2000);
-                        Console.Clear();
-                        break;
-
-
-                    case 6:
-                        Console.Clear();
-                        Console.WriteLine("Enter the state to search: ");
-                        string searchState = Console.ReadLine();
-                        var stateResults = user.SearchPersonsInState(searchState);
-                        DisplaySearchResults(stateResults);
-                        Thread.Sleep(2000);
-                        Console.Clear();
-                        break;
-
-                    case 7:
 
                         flag = false;
                         break;
@@ -159,7 +170,7 @@ namespace Address_Book_System
             }
             else
             {
-                Console.WriteLine("No matching contacts found.");
+                Console.WriteLine("No matching Contacts found.");
             }
 
         }

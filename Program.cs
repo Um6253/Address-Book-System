@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -115,40 +116,43 @@ namespace Address_Book_System
                         Console.WriteLine("3.Get Contact details by State Name in AddressBook");
                         Console.WriteLine();
                         Console.Write("Enter Option :");
-                        op = Convert.ToInt32(Console.ReadLine());
-                        switch (op)
-                        {
-                            case 1:
-                                Console.Clear();
-                                Console.Write("Enter the Name : ");
-                                string searchname = Console.ReadLine();
-                                var nameResults = user.SearchPersonsInName(searchname);
-                                DisplayPersonCityAndState(nameResults);
-                                Thread.Sleep(2000);
-                                Console.Clear();
+                        
+                            op = Convert.ToInt32(Console.ReadLine());
+                                switch (op)
+                                {
+                                    case 1:
+                                        Console.Clear();
+                                        Console.Write("Enter the Name : ");
+                                        string searchname = Console.ReadLine();
+                                        var nameResults = user.SearchPersonsInName(searchname);
+                                        DisplayPersonCityAndState(nameResults);
+                                        Thread.Sleep(2000);
+                                        Console.Clear();
+                                        break;
+                                    case 2:
+                                        Console.Clear();
+                                        Console.Write("Enter the City : ");
+                                        string searchCity = Console.ReadLine();
+                                        var cityResults = user.SearchPersonsInCity(searchCity);
+                                        DisplaySearchResults(cityResults);
+                                        Console.WriteLine($"The Number of contacts in {searchCity}: {user.GetContactCountByState(searchCity)}");
+                                        Thread.Sleep(80000);
+                                        Console.Clear();
+                                        break;
+                                    case 3:
+                                        Console.Clear();
+                                        Console.Write("Enter the State : ");
+                                        string searchState = Console.ReadLine();
+                                        var stateResults = user.SearchPersonsInState(searchState);
+                                        DisplaySearchResults(stateResults);
+                                        Console.WriteLine($"The Number of contacts in {searchState}: {user.GetContactCountByState(searchState)}");
+                                        Thread.Sleep(80000);
+                                        Console.Clear();
+                                        break;
+                                }
                                 break;
-                            case 2:
-                                Console.Clear();
-                                Console.Write("Enter the City : ");
-                                string searchCity = Console.ReadLine();
-                                var cityResults = user.SearchPersonsInCity(searchCity);
-                                DisplaySearchResults(cityResults);
-                                Console.WriteLine($"The Number of contacts in {searchCity}: {user.GetContactCountByState(searchCity)}");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                                break;
-                            case 3:
-                                Console.Clear();
-                                Console.Write("Enter the State : ");
-                                string searchState = Console.ReadLine();
-                                var stateResults = user.SearchPersonsInState(searchState);
-                                DisplaySearchResults(stateResults);
-                                Console.WriteLine($"The Number of contacts in {searchState}: {user.GetContactCountByState(searchState)}");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                                break;
-                        }
-                        break;
+                       // Catch Console.WriteLine("Please Enter a proper option ")
+
                     case 5:
 
                         flag = false;

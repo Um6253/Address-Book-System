@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static Address_Book_System.Program;
 
@@ -16,8 +17,20 @@ namespace Address_Book_System
         {
             Console.Write("First name: ");
             string first_name = Console.ReadLine();
+            string p1 = "^[A-Z][a-z]+[' ']*[A-Z][a-z]*$";
+            while(!Regex.IsMatch(first_name, p1))
+            {
+                Console.Write("Please enter the proper First name : ");
+                first_name = Console.ReadLine();
+            }
             Console.Write("Lastname: ");
             string last_name = Console.ReadLine();
+            string p2 = "^[A-Z][a-z]+$";
+            while(!Regex.IsMatch(last_name, p2))
+            {
+                Console.Write("Please enter the proper Last Name: ");
+                first_name = Console.ReadLine();
+            }
             Console.Write("Address: ");
             string address = Console.ReadLine();
             Console.Write("City: ");
@@ -26,11 +39,29 @@ namespace Address_Book_System
             string state = Console.ReadLine();
             Console.Write("Zipcode: ");
             string zip = Console.ReadLine();
+            string p3 = "^[0-9]{6}$";
+            if (!Regex.IsMatch(zip, p3))
+            {
+                Console.Write("Please enter the proper Zip Code: ");
+                zip = Console.ReadLine();
+            }
             Console.Write("Email: ");
             string email = Console.ReadLine();
+            string p4 = "^[a-z]+[0-9]+[@][a-z]+[.][a-z]{1,3}$";
+            if (!Regex.IsMatch(first_name, p4))
+            {
+                Console.Write("Please enter the proper Email ID: ");
+                first_name = Console.ReadLine();
+            }
             Console.Write("Phone number: ");
             long phone_number = Convert.ToInt64(Console.ReadLine());
-           Contact newc = new Contact(first_name, last_name, address, city, state, zip, phone_number, email);
+            string p5 = "^[0-9]{10}$";
+            if (!Regex.IsMatch(zip, p5))
+            {
+                Console.Write("Please enter the proper Phone Number: ");
+                zip = Console.ReadLine();
+            }
+            Contact newc = new Contact(first_name, last_name, address, city, state, zip, phone_number, email);
             contacts.Add(newc);
 
         }

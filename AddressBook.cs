@@ -12,6 +12,11 @@ namespace Address_Book_System
     {
 
         List<Contact> contacts = new List<Contact>();
+        public void SortByName()
+        {
+            contacts = contacts.OrderBy(contact => contact.Fname).ToList();
+        }
+
 
         public void add_contact()
         {
@@ -69,6 +74,7 @@ namespace Address_Book_System
         }
         public void display()
         {
+           SortByName();
             for (int i = 0; i < contacts.Count; i++)
             {
                 Console.WriteLine($"Contacts{i + 1}");

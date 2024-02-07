@@ -118,7 +118,10 @@ namespace Address_Book_System
                         Console.WriteLine();
                         Console.Write("Enter Option :");
                         
+                        
                             op = Convert.ToInt32(Console.ReadLine());
+                           
+                        
                                 switch (op)
                                 {
                                     case 1:

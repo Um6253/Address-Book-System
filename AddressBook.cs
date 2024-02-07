@@ -74,7 +74,7 @@ namespace Address_Book_System
         }
         public void display()
         {
-           // SortByName();
+           SortByName();
             for (int i = 0; i < contacts.Count; i++)
             {
                 Console.WriteLine($"Contacts{i + 1}");

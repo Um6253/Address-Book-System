@@ -106,7 +106,7 @@ namespace Address_Book_System
                                                 Thread.Sleep(5000);
                                                 Console.Clear();
                                                 break;
-                                           /* case 4:
+                                            case 4:
                                                 Console.Clear();
                                                 Console.WriteLine("Contacts by Zip Code");
                                                 obj.displaybyzipcode();
@@ -115,7 +115,7 @@ namespace Address_Book_System
                                                 break;
                                             default:
                                                 Console.WriteLine("InValid Option");
-                                                break;*/
+                                                break;
                                         }
                                         break;
                                     case 3:

@@ -121,11 +121,11 @@ namespace Address_Book_System
             SortByCity();
             display();
         }
-       /* public void displaybyzipcode()
+        public void displaybyzipcode()
         {
             SortByZipCode();
             display();
-        }*/
+        }
         public void edit()
         {
             Console.WriteLine("Enter the email ID of the contact to edit");

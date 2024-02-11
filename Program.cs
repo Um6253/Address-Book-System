@@ -26,7 +26,7 @@ namespace Address_Book_System
                 Console.WriteLine("1.Add new User ");
                 Console.WriteLine("2.Perform Operation in the AddressBook");
                 Console.WriteLine("3.Display list of User's in AddressBook");
-                Console.WriteLine("4.Search Contact in AddressBook");
+                Console.WriteLine("4.Search Contact in AddressBook and get Count");
                 Console.WriteLine("5.To exit from the AddressBook ");
                 Console.WriteLine();
                 Console.Write("Enter Option:");
@@ -71,9 +71,52 @@ namespace Address_Book_System
                                         break;
                                     case 2:
                                         Console.Clear();
-                                        obj.display();
+                                        /* obj.display();
                                         Thread.Sleep(5000);
                                         Console.Clear();
+                                        break;*/
+                                        
+                                        Console.WriteLine("1.Display by Sorted Person's Name");
+                                        Console.WriteLine("2.Display by Sorted State Name");
+                                        Console.WriteLine("3.Display by Sorted City Name");
+                                        Console.WriteLine("4.Display by Sorted Zip Code");
+                                        Console.WriteLine();
+                                        Console.Write("Enter Option :");
+                                        op = Convert.ToInt32(Console.ReadLine());
+                                        switch (op)
+                                        {
+                                            case 1:
+                                                Console.Clear();
+                                                Console.WriteLine("Contacts by Person's Name");
+                                                obj.displaybyNames();
+                                                Thread.Sleep(5000);
+                                                Console.Clear();
+                                                break;
+                                            case 2:
+                                                Console.Clear();
+                                                Console.WriteLine("Contacts by State Name");
+                                                obj.displaybystate();
+                                                Thread.Sleep(5000);
+                                                Console.Clear();
+                                                break;
+                                            case 3:
+                                                Console.Clear();
+                                                Console.WriteLine("Contacts by City Name");
+                                                obj.displaybycity();
+                                                Thread.Sleep(5000);
+                                                Console.Clear();
+                                                break;
+                                            case 4:
+                                                Console.Clear();
+                                                Console.WriteLine("Contacts by Zip Code");
+                                                obj.displaybyzipcode();
+                                                Thread.Sleep(5000);
+                                                Console.Clear();
+                                                break;
+                                            default:
+                                                Console.WriteLine("InValid Option");
+                                                break;
+                                        }
                                         break;
                                     case 3:
                                         Console.Clear();
@@ -117,45 +160,45 @@ namespace Address_Book_System
                         Console.WriteLine("3.Get Contact details by State Name in AddressBook");
                         Console.WriteLine();
                         Console.Write("Enter Option :");
-                        
-                        
-                            op = Convert.ToInt32(Console.ReadLine());
-                           
-                        
-                                switch (op)
-                                {
-                                    case 1:
-                                        Console.Clear();
-                                        Console.Write("Enter the Name : ");
-                                        string searchname = Console.ReadLine();
-                                        var nameResults = user.SearchPersonsInName(searchname);
-                                        DisplayPersonCityAndState(nameResults);
-                                        Thread.Sleep(2000);
-                                        Console.Clear();
-                                        break;
-                                    case 2:
-                                        Console.Clear();
-                                        Console.Write("Enter the City : ");
-                                        string searchCity = Console.ReadLine();
-                                        var cityResults = user.SearchPersonsInCity(searchCity);
-                                        DisplaySearchResults(cityResults);
-                                        Console.WriteLine($"The Number of contacts in {searchCity}: {user.GetContactCountByState(searchCity)}");
-                                        Thread.Sleep(80000);
-                                        Console.Clear();
-                                        break;
-                                    case 3:
-                                        Console.Clear();
-                                        Console.Write("Enter the State : ");
-                                        string searchState = Console.ReadLine();
-                                        var stateResults = user.SearchPersonsInState(searchState);
-                                        DisplaySearchResults(stateResults);
-                                        Console.WriteLine($"The Number of contacts in {searchState}: {user.GetContactCountByState(searchState)}");
-                                        Thread.Sleep(80000);
-                                        Console.Clear();
-                                        break;
-                                }
+
+
+                        op = Convert.ToInt32(Console.ReadLine());
+
+
+                        switch (op)
+                        {
+                            case 1:
+                                Console.Clear();
+                                Console.Write("Enter the Name : ");
+                                string searchname = Console.ReadLine();
+                                var nameResults = user.SearchPersonsInName(searchname);
+                                DisplayPersonCityAndState(nameResults);
+                                Thread.Sleep(2000);
+                                Console.Clear();
                                 break;
-                       // Catch Console.WriteLine("Please Enter a proper option ")
+                            case 2:
+                                Console.Clear();
+                                Console.Write("Enter the City : ");
+                                string searchCity = Console.ReadLine();
+                                var cityResults = user.SearchPersonsInCity(searchCity);
+                                DisplaySearchResults(cityResults);
+                                Console.WriteLine($"The Number of contacts in {searchCity}: {user.GetContactCountByCity(searchCity)}");
+                                Thread.Sleep(80000);
+                                Console.Clear();
+                                break;
+                            case 3:
+                                Console.Clear();
+                                Console.Write("Enter the State : ");
+                                string searchState = Console.ReadLine();
+                                var stateResults = user.SearchPersonsInState(searchState);
+                                DisplaySearchResults(stateResults);
+                                Console.WriteLine($"The Number of contacts in {searchState}: {user.GetContactCountByState(searchState)}");
+                                Thread.Sleep(80000);
+                                Console.Clear();
+                                break;
+                        }
+                        break;
+                    // Catch Console.WriteLine("Please Enter a proper option ")
 
                     case 5:
 

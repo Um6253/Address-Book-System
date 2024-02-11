@@ -149,47 +149,47 @@ namespace Address_Book_System
                             Console.Clear();
                             Console.WriteLine("Enter New First Name : ");
                             editContact.Fname = Console.ReadLine();
-                            string p1 = "^[A-Z][a-z]+[' ']*[A-Z]*[a-z]*$";
+                            /*string p1 = "^[A-Z][a-z]+[' ']*[A-Z]*[a-z]*$";
                             while (!Regex.IsMatch(editContact.Fname, p1))
                             {
                                 Console.Write("Please enter the proper First name : ");
                                 editContact.Fname = Console.ReadLine();
-                            }
+                            }*/
                             break;
                         case 2:
                             Console.Clear();
                             Console.WriteLine("Enter New Last Name : ");
                             editContact.lastname = Console.ReadLine();
-                            string p2 = "^[A-Z][a-z]+$";
+                            /*string p2 = "^[A-Z][a-z]+$";
                             while (!Regex.IsMatch(editContact.lastname, p2))
                             {
                                 Console.Write("Please enter the proper Last Name: ");
                                 editContact.lastname = Console.ReadLine();
-                            }
+                            }*/
                             break;
                         case 3:
                             Console.Clear();
                             Console.WriteLine("Enter New Phone Number : ");
                             editContact.PhoneNumber = Convert.ToInt64(Console.ReadLine());
                             string str = editContact.PhoneNumber.ToString();
-                            string p5 = "^[7-9][0-9]{9}$";
+                            /*string p5 = "^[7-9][0-9]{9}$";
                             while (!Regex.IsMatch(str, p5))
                             {
                                 Console.Write("Please enter the proper Phone Number: ");
                                 editContact.PhoneNumber = Convert.ToInt64(Console.ReadLine());
                                 str = editContact.PhoneNumber.ToString();
-                            }
+                            }*/
                             break;
                         case 4:
                             Console.Clear();
                             Console.WriteLine("Enter New Email : ");
                             editContact.Email = Console.ReadLine();
-                            string p4 = "^[a-z]+[0-9]+[@][a-z]+[.][a-z]{1,3}$";
+                            /*string p4 = "^[a-z]+[0-9]+[@][a-z]+[.][a-z]{1,3}$";
                             while (!Regex.IsMatch(editContact.Email, p4))
                             {
                                 Console.Write("Please enter the proper Email ID: ");
                                 editContact.Email = Console.ReadLine();
-                            }
+                            }*/
                             break;
                         case 5:
                             Console.Clear();
@@ -210,12 +210,12 @@ namespace Address_Book_System
                             Console.Clear();
                             Console.WriteLine("Enter New ZipCode : ");
                             editContact.ZipCode = (Console.ReadLine());
-                            string p3 = "^[0-9]{6}$";
+                            /*string p3 = "^[0-9]{6}$";
                             while (!Regex.IsMatch(editContact.ZipCode, p3))
                             {
                                 Console.Write("Please enter the proper Zip Code: ");
                                 editContact.ZipCode = Console.ReadLine();
-                            }
+                            }*/
                             break;
                         case 9:
                             Console.WriteLine(" Contact Edited..");

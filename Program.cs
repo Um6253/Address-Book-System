@@ -26,7 +26,7 @@ namespace Address_Book_System
                 Console.WriteLine("1.Add new User ");
                 Console.WriteLine("2.Perform Operation in the AddressBook");
                 Console.WriteLine("3.Display list of User's in AddressBook");
-                Console.WriteLine("4.Search Contact in AddressBook");
+                Console.WriteLine("4.Search Contact in AddressBook and get Count");
                 Console.WriteLine("5.To exit from the AddressBook ");
                 Console.WriteLine();
                 Console.Write("Enter Option:");
@@ -106,15 +106,16 @@ namespace Address_Book_System
                                                 Thread.Sleep(5000);
                                                 Console.Clear();
                                                 break;
-                                            case 4:
+                                           /* case 4:
                                                 Console.Clear();
                                                 Console.WriteLine("Contacts by Zip Code");
                                                 obj.displaybyzipcode();
                                                 Thread.Sleep(5000);
                                                 Console.Clear();
                                                 break;
-                                            default: Console.WriteLine("InValid Option");
-                                                break;
+                                            default:
+                                                Console.WriteLine("InValid Option");
+                                                break;*/
                                         }
                                         break;
                                     case 3:
@@ -181,7 +182,7 @@ namespace Address_Book_System
                                 string searchCity = Console.ReadLine();
                                 var cityResults = user.SearchPersonsInCity(searchCity);
                                 DisplaySearchResults(cityResults);
-                                Console.WriteLine($"The Number of contacts in {searchCity}: {user.GetContactCountByState(searchCity)}");
+                                Console.WriteLine($"The Number of contacts in {searchCity}: {user.GetContactCountByCity(searchCity)}");
                                 Thread.Sleep(80000);
                                 Console.Clear();
                                 break;

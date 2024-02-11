@@ -3,18 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static Address_Book_System.Program;
 
 namespace Address_Book_System
 {
-     class AddressBook
+    class AddressBook
     {
 
         List<Contact> contacts = new List<Contact>();
         public void SortByName()
         {
             contacts = contacts.OrderBy(contact => contact.Fname).ToList();
+        }
+        public void SortByCity()
+        {
+            contacts = contacts.OrderBy(contact => contact.City).ToList();
+        }
+        public void SortByState()
+        {
+            contacts = contacts.OrderBy(contact => contact.State).ToList();
+        }
+        public void SortByZipCode()
+        {
+            contacts = contacts.OrderBy(contact => contact.ZipCode).ToList();
         }
 
 
@@ -23,7 +37,7 @@ namespace Address_Book_System
             Console.Write("First name: ");
             string first_name = Console.ReadLine();
             string p1 = "^[A-Z][a-z]+[' ']*[A-Z]*[a-z]*$";
-            while(!Regex.IsMatch(first_name, p1))
+            while (!Regex.IsMatch(first_name, p1))
             {
                 Console.Write("Please enter the proper First name : ");
                 first_name = Console.ReadLine();
@@ -31,7 +45,7 @@ namespace Address_Book_System
             Console.Write("Lastname: ");
             string last_name = Console.ReadLine();
             string p2 = "^[A-Z][a-z]+$";
-            while(!Regex.IsMatch(last_name, p2))
+            while (!Regex.IsMatch(last_name, p2))
             {
                 Console.Write("Please enter the proper Last Name: ");
                 last_name = Console.ReadLine();
@@ -74,10 +88,9 @@ namespace Address_Book_System
         }
         public void display()
         {
-           SortByName();
             for (int i = 0; i < contacts.Count; i++)
             {
-                Console.WriteLine($"Contacts{i + 1}");
+                Console.WriteLine($"Contact  {i + 1}");
                 Console.WriteLine();
                 Console.WriteLine($"FirstName: {contacts[i].Fname}");
                 Console.WriteLine($"lastname: {contacts[i].lastname}");
@@ -90,67 +103,140 @@ namespace Address_Book_System
                 Console.WriteLine();
 
             }
+        }
+        public void displaybyNames()
+        {
+            SortByName();
+             display();
 
+        }
+        public void displaybystate()
+        {
+            SortByState();
+            display();
 
+        }
+        public void displaybycity()
+        {
+            SortByCity();
+            display();
+        }
+        public void displaybyzipcode() 
+        { 
+            SortByZipCode();
+            display();
         }
         public void edit()
         {
             Console.WriteLine("Enter the email ID of the contact to edit");
             string email = Console.ReadLine();
-            string field = "", new_value = "";
-            int num = 0;
-            int flag = 0;
-            foreach (var con in contacts)
+            Contact editContact = contacts.Find(contact => contact.Email == email);
+
+            if (editContact != null)
             {
-                if (con.Email == email)
+                Console.WriteLine();
+
+                int flag = 0, n;
+                do
                 {
-                    flag = 1;
-                    Console.WriteLine("Enter the field name you want to edit");
-                    field = Console.ReadLine();
-                    Console.Write($"Enter the new value of the {field}:");
-                    if (field == "number")
-                    {
-                        num = Convert.ToInt32(Console.ReadLine());
-                    }
-                    else
-                    {
-                        new_value = Console.ReadLine();
-                    }
-                    switch (field)
-                    {
-                        case "firstname":
-                            con.Fname = new_value;
-                            break;
-                        case "lastname":
-                            con.lastname = new_value;
-                            break;
-                        case "address":
-                            con.Addres = new_value;
-                            break;
-                        case "city":
-                            con.City = new_value;
-                            break;
-                        case "state":
-                            con.State = new_value;
-                            break;
-                        case "zip":
-                            con.ZipCode = new_value;
-                            break;
-                        case "phone Number":
-                            con.PhoneNumber = num;
-                            break;
-                        case "email":
-                            con.Email = new_value;
-                            break;
-                    }
-                }
+                    Console.WriteLine("Enter the option to edit : ");
+                    Console.WriteLine("1. First Name\n2. Last Name\n3. Phone Number\n4. Email\n5. Address\n6. City\n7. State\n8. ZipCode\n9. Exit\n");
+                    n = Convert.ToInt32(Console.ReadLine());
 
+                    switch (n)
+                    {
+                        case 1:
+                            Console.Clear();
+                            Console.WriteLine("Enter New First Name : ");
+                            editContact.Fname = Console.ReadLine();
+                            string p1 = "^[A-Z][a-z]+[' ']*[A-Z]*[a-z]*$";
+                            while (!Regex.IsMatch(editContact.Fname, p1))
+                            {
+                                Console.Write("Please enter the proper First name : ");
+                                editContact.Fname = Console.ReadLine();
+                            }
+                            break;
+                        case 2:
+                            Console.Clear();
+                            Console.WriteLine("Enter New Last Name : ");
+                            editContact.lastname = Console.ReadLine();
+                            string p2 = "^[A-Z][a-z]+$";
+                            while (!Regex.IsMatch(editContact.lastname, p2))
+                            {
+                                Console.Write("Please enter the proper Last Name: ");
+                                editContact.lastname = Console.ReadLine();
+                            }
+                            break;
+                        case 3:
+                            Console.Clear();
+                            Console.WriteLine("Enter New Phone Number : ");
+                            editContact.PhoneNumber = Convert.ToInt64(Console.ReadLine());
+                            string str = editContact.PhoneNumber.ToString();
+                            string p5 = "^[7-9][0-9]{9}$";
+                            while (!Regex.IsMatch(str, p5))
+                            {
+                                Console.Write("Please enter the proper Phone Number: ");
+                                editContact.PhoneNumber = Convert.ToInt64(Console.ReadLine());
+                                str = editContact.PhoneNumber.ToString();
+                            }
+                            break;
+                        case 4:
+                            Console.Clear();
+                            Console.WriteLine("Enter New Email : ");
+                            editContact.Email = Console.ReadLine();
+                            string p4 = "^[a-z]+[0-9]+[@][a-z]+[.][a-z]{1,3}$";
+                            while (!Regex.IsMatch(editContact.Email, p4))
+                            {
+                                Console.Write("Please enter the proper Email ID: ");
+                                editContact.Email = Console.ReadLine();
+                            }
+                            break;
+                        case 5:
+                            Console.Clear();
+                            Console.WriteLine("Enter New Address : ");
+                            editContact.Addres = Console.ReadLine();
+                            break;
+                        case 6:
+                            Console.Clear();
+                            Console.WriteLine("Enter New City : ");
+                            editContact.City = Console.ReadLine();
+                            break;
+                        case 7:
+                            Console.Clear();
+                            Console.WriteLine("Enter New State : ");
+                            editContact.State = Console.ReadLine();
+                            break;
+                        case 8:
+                            Console.Clear();
+                            Console.WriteLine("Enter New ZipCode : ");
+                            editContact.ZipCode = (Console.ReadLine());
+                            string p3 = "^[0-9]{6}$";
+                            while (!Regex.IsMatch(editContact.ZipCode, p3))
+                            {
+                                Console.Write("Please enter the proper Zip Code: ");
+                                editContact.ZipCode = Console.ReadLine();
+                            }
+                            break;
+                        case 9:
+                            Console.WriteLine(" Contact Edited..");
+                            flag = 1;
+                            break;
+                        default:
+                            Console.WriteLine("Invalid option. Please try again.");
+                            break;
+                    }
+
+                    Console.Clear();
+                    Console.WriteLine(" Contact Edited..");
+                    Console.WriteLine();
+                } while (flag == 0);
             }
-            if (flag == 0)
+            else
             {
-                Console.WriteLine("No Such Contact is found in the AddressBook");
-
+                Console.WriteLine($"The contact with the email '{email}' is not found in the contact list.");
+                Thread.Sleep(2000);
             }
+
 
         }
         public void Delete()
@@ -200,4 +286,3 @@ namespace Address_Book_System
     }
 
 }
-

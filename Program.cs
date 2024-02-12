@@ -61,7 +61,6 @@ namespace Address_Book_System
                                 Console.WriteLine("3.Edit the contact in Address Book");
                                 Console.WriteLine("4.Delete the contact from Address Book");
                                 Console.WriteLine("5.Save the AddressBook in a file ");
-                                //Console.WriteLine("6.Load the data from the AddressBook.");
                                 Console.WriteLine("6.Exit from the Address Book");
                                 Console.WriteLine();
                                 Console.Write("Enter Option :");
@@ -76,11 +75,6 @@ namespace Address_Book_System
                                         break;
                                     case 2:
                                         Console.Clear();
-                                        /* obj.display();
-                                        Thread.Sleep(5000);
-                                        Console.Clear();
-                                        break;*/
-                                        
                                         Console.WriteLine("1.Display by Sorted Person's Name");
                                         Console.WriteLine("2.Display by Sorted State Name");
                                         Console.WriteLine("3.Display by Sorted City Name");
@@ -135,23 +129,15 @@ namespace Address_Book_System
                                         Thread.Sleep(2000);
                                         Console.Clear();
                                         break;
- 
-                                   /* case 5:
+
+                                    case 5:
                                         Console.Clear();
                                         obj.SaveToFile(user.GetPersons());
                                         Console.WriteLine("AddressBook data saved to file successfully.");
                                         Thread.Sleep(2000);
                                         Console.Clear();
-                                        break;*/
-                                    /*case 5:
-                                        Console.Clear();
-                                        
-                                        obj.LoadFromFile();
-                                        Console.WriteLine("AddressBook data loaded from file successfully.");
-                                        Thread.Sleep(2000);
-                                        Console.Clear();
                                         break;
-*/
+                                        
                                 }
                             }
                             else

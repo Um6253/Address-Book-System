@@ -303,15 +303,15 @@ namespace Address_Book_System
 
 
 
-        /*public void SaveToFile(Dictionary<string,AddressBook>dict)
+        public void SaveToFile(Dictionary<string, AddressBook> dict)
         {
             using (StreamWriter writer = new StreamWriter(@"C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\AD'S\My File.txt"))
             {
 
-                foreach (var contact in dict )
+                foreach (var contact in dict)
 
                 {
-                     writer.WriteLine($"Address Book of{contact.Key}");  
+                    writer.WriteLine($"Address Book of{contact.Key}");
                     foreach (var contact2 in contact.Value.Getall())
                     {
                         int count = 1;
@@ -321,7 +321,7 @@ namespace Address_Book_System
                     }
                 }
             }
-        }*/
+        }
 
         public void LoadFromFile()
         {

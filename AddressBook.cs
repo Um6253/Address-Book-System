@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Address_Book_System;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -82,8 +85,21 @@ namespace Address_Book_System
                 phone_number = Convert.ToInt64(Console.ReadLine());
                 str = phone_number.ToString();
             }
-            Contact newc = new Contact(first_name, last_name, address, city, state, zip, phone_number, email);
+            Contact newc = new Contact
+            {
+
+
+                Fname = first_name,
+                lastname = last_name,
+                Addres = address,
+                City = city,
+                State = state,
+                ZipCode = zip,
+                PhoneNumber = phone_number,
+                Email = email
+            };
             contacts.Add(newc);
+            //Contact newc = new Contact(first_name, last_name, address, city, state, zip, phone_number, email);
 
         }
         public void display()
@@ -107,7 +123,7 @@ namespace Address_Book_System
         public void displaybyNames()
         {
             SortByName();
-             display();
+            display();
 
         }
         public void displaybystate()
@@ -283,6 +299,72 @@ namespace Address_Book_System
         {
             return contacts.Count(contact => contact.State.Equals(state, StringComparison.OrdinalIgnoreCase));
         }
-    }
 
+
+
+
+        /*public void SaveToFile(Dictionary<string,AddressBook>dict)
+        {
+            using (StreamWriter writer = new StreamWriter(@"C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\AD'S\My File.txt"))
+            {
+
+                foreach (var contact in dict )
+
+                {
+                     writer.WriteLine($"Address Book of{contact.Key}");  
+                    foreach (var contact2 in contact.Value.Getall())
+                    {
+                        int count = 1;
+                        writer.WriteLine($"contact:{count++}\nFirst Name: {contact2.Fname}\nLast Name: {contact2.lastname}\n" +
+                            $"Address: {contact2.Addres}\nCity: {contact2.City}\nState:{contact2.State}" +
+                            $"\nZipCode: {contact2.ZipCode}\nPhone Number: {contact2.PhoneNumber}\nEmail ID:{contact2.Email}\n");
+                    }
+                }
+            }
+        }*/
+
+        public void LoadFromFile()
+        {
+            if (File.Exists(@"C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\AD'S\My File.txt"))
+            {
+                
+               
+
+                using (StreamReader reader = new StreamReader(@"C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\AD'S\My File.txt"))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] contactData = line.Split(',');
+                        if (contactData.Length == 8)
+                        {
+                            Contact newContact = new Contact
+                            {
+
+                                Fname = contactData[0],
+                                lastname = contactData[1],
+                                Addres = contactData[2],
+                                City = contactData[3],
+                                State = contactData[4],
+                                ZipCode = contactData[5],
+                                PhoneNumber = long.Parse(contactData[6]),
+                                Email = contactData[7]
+                            };
+                            
+
+                        }
+                            Console.WriteLine(line);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"File  not found.");
+            }
+        }
+        public List<Contact> Getall() 
+        {
+            return contacts;
+        }
+    }
 }

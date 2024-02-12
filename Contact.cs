@@ -58,16 +58,16 @@ namespace Address_Book_System
             get { return email; }
             set { email = value; }
         }
-        public Contact(string first_name, string last_name, string address, string city, string state, string zip, long phone_number, string email)
+        public Contact()
         {
-            this.first_name = first_name;
-            this.last_name = last_name;
-            this.address = address;
-            this.city = city;
-            this.state = state;
-            this.zipcode = zip;
-            this.phone_number = phone_number;
-            this.email = email;
+            this.Fname = first_name;
+            this.lastname = last_name;
+            this.Addres = address;
+            this.City = city;
+            this.State = state;
+            this.ZipCode = zipcode;
+            this.PhoneNumber = phone_number;
+            this.Email = email;
         }
     }
 }

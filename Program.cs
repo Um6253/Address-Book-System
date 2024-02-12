@@ -23,19 +23,22 @@ namespace Address_Book_System
                 Console.WriteLine("WELCOME TO THE ADDRESS BOOK SYSTEM");
                 Console.WriteLine();
                 Console.WriteLine("Choose the Operation to be performed by the User");
-                Console.WriteLine("1.Add new User ");
+                Console.WriteLine("1.Add new AddressBook ");
                 Console.WriteLine("2.Perform Operation in the AddressBook");
                 Console.WriteLine("3.Display list of User's in AddressBook");
                 Console.WriteLine("4.Search Contact in AddressBook and get Count");
-                Console.WriteLine("5.To exit from the AddressBook ");
+                Console.WriteLine("5.Display the data from the stored file of AddressBooks.");
+                Console.WriteLine("6.To exit from the AddressBook ");
                 Console.WriteLine();
                 Console.Write("Enter Option:");
                 int option = Convert.ToInt16(Console.ReadLine());
+                AddressBook book = new AddressBook();
                 switch (option)
                 {
+                    
                     case 1:
                         Console.Clear();
-                        Console.Write("Enter the User Name: ");
+                        Console.Write("Enter the Username for AddressBook: ");
                         string name = Console.ReadLine();
                         user.add_user(name);
                         Thread.Sleep(2000);
@@ -44,7 +47,7 @@ namespace Address_Book_System
                     case 2:
                         int op;
                         Console.Clear();
-                        Console.Write("Enter the User Name in Which the Operations must be performed : ");
+                        Console.Write("Enter the Username in Which the Operations must be performed in Address Book : ");
                         string fname = Console.ReadLine();
                         do
                         {
@@ -57,7 +60,8 @@ namespace Address_Book_System
                                 Console.WriteLine("2.Display the contacts in Address Book");
                                 Console.WriteLine("3.Edit the contact in Address Book");
                                 Console.WriteLine("4.Delete the contact from Address Book");
-                                Console.WriteLine("5.Exit from the Address Book");
+                                Console.WriteLine("5.Save the AddressBook in a file ");
+                                Console.WriteLine("6.Exit from the Address Book");
                                 Console.WriteLine();
                                 Console.Write("Enter Option :");
                                 op = Convert.ToInt32(Console.ReadLine());
@@ -71,11 +75,6 @@ namespace Address_Book_System
                                         break;
                                     case 2:
                                         Console.Clear();
-                                        /* obj.display();
-                                        Thread.Sleep(5000);
-                                        Console.Clear();
-                                        break;*/
-                                        
                                         Console.WriteLine("1.Display by Sorted Person's Name");
                                         Console.WriteLine("2.Display by Sorted State Name");
                                         Console.WriteLine("3.Display by Sorted City Name");
@@ -130,18 +129,27 @@ namespace Address_Book_System
                                         Thread.Sleep(2000);
                                         Console.Clear();
                                         break;
+
+                                    case 5:
+                                        Console.Clear();
+                                        obj.SaveToFile(user.GetPersons());
+                                        Console.WriteLine("AddressBook data saved to file successfully.");
+                                        Thread.Sleep(2000);
+                                        Console.Clear();
+                                        break;
+                                        
                                 }
                             }
                             else
                             {
                                 Console.WriteLine("User Does not exits in AddressBook");
-                                op = 5;
+                                op = 6;
                                 Thread.Sleep(4000);
                                 Console.Clear();
                                 break;
                             }
 
-                        } while (op != 5);
+                        } while (op != 6);
                         Console.Clear();
                         break;
                     case 3:
@@ -199,8 +207,15 @@ namespace Address_Book_System
                         }
                         break;
                     // Catch Console.WriteLine("Please Enter a proper option ")
-
                     case 5:
+                        Console.Clear();
+                        book.LoadFromFile();
+                        Console.WriteLine("AddressBook data loaded from file successfully.");
+                        Thread.Sleep(2000);
+                        Console.Clear();
+                        break;
+
+                    case 6:
 
                         flag = false;
                         break;

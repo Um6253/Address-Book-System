@@ -1,9 +1,12 @@
 ﻿using Address_Book_System;
+using CsvHelper;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -305,7 +308,8 @@ namespace Address_Book_System
 
         public void SaveToFile(Dictionary<string, AddressBook> dict)
         {
-            using (StreamWriter writer = new StreamWriter(@"C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\AD'S\My File.txt"))
+            string p1= "My File.txt";
+            using (StreamWriter writer = new StreamWriter(p1))
             {
 
                 foreach (var contact in dict)
@@ -325,12 +329,12 @@ namespace Address_Book_System
 
         public void LoadFromFile()
         {
-            if (File.Exists(@"C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\AD'S\My File.txt"))
+            if (File.Exists("My File.txt"))
             {
-                
-               
 
-                using (StreamReader reader = new StreamReader(@"C:\Users\MANIKANTA\Desktop\LOCOBUZZ\Address Book System\AD'S\My File.txt"))
+
+
+                using (StreamReader reader = new StreamReader("My File.txt"))
                 {
                     string line;
                     while ((line = reader.ReadLine()) != null)
@@ -350,10 +354,10 @@ namespace Address_Book_System
                                 PhoneNumber = long.Parse(contactData[6]),
                                 Email = contactData[7]
                             };
-                            
+
 
                         }
-                            Console.WriteLine(line);
+                        Console.WriteLine(line);
                     }
                 }
             }
@@ -362,9 +366,24 @@ namespace Address_Book_System
                 Console.WriteLine($"File  not found.");
             }
         }
-        public List<Contact> Getall() 
+        public List<Contact> Getall()
         {
             return contacts;
+        }
+        public void SaveCSV()
+        {
+            string p1 = "My File.txt";
+            StreamReader sr = new StreamReader(p1);
+            string[] line = File.ReadAllLines(p1);
+            p1 = "Sheets.csv";
+            using (StreamWriter sw = File.CreateText(p1))
+            {
+                while (!sr.EndOfStream)
+                {
+                    sw.WriteLine(sr.ReadLine());
+                }
+                sr.Close();
+            }
         }
     }
 }

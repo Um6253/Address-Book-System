@@ -61,7 +61,8 @@ namespace Address_Book_System
                                 Console.WriteLine("3.Edit the contact in Address Book");
                                 Console.WriteLine("4.Delete the contact from Address Book");
                                 Console.WriteLine("5.Save the AddressBook in a file ");
-                                Console.WriteLine("6.Exit from the Address Book");
+                                Console.WriteLine("6.Save the AddressBook in a file ");
+                                Console.WriteLine("7.Exit from the Address Book");
                                 Console.WriteLine();
                                 Console.Write("Enter Option :");
                                 op = Convert.ToInt32(Console.ReadLine());
@@ -137,13 +138,22 @@ namespace Address_Book_System
                                         Thread.Sleep(2000);
                                         Console.Clear();
                                         break;
-                                        
+                                    case 6:
+                                        Console.Clear();
+                                        obj.SaveCSV();
+                                        Console.WriteLine("AddressBook data saved to file successfully.");
+                                        Thread.Sleep(2000);
+                                        Console.Clear();
+                                        break;
+
+
+
                                 }
                             }
                             else
                             {
                                 Console.WriteLine("User Does not exits in AddressBook");
-                                op = 6;
+                                op = 7;
                                 Thread.Sleep(4000);
                                 Console.Clear();
                                 break;

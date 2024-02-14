@@ -141,7 +141,7 @@ namespace Address_Book_System
                                     case 6:
                                         Console.Clear();
                                         obj.SaveCSV();
-                                        Console.WriteLine("AddressBook data saved to file successfully.");
+                                        Console.WriteLine("AddressBook data saved to CSV file successfully.");
                                         Thread.Sleep(2000);
                                         Console.Clear();
                                         break;
